@@ -7,7 +7,7 @@ server:
   # The base URL for Headplane. Please keep in mind that this will be required
   # for Headscale to properly function going forward AND it should not include
   # the dashboard prefix (/admin) portion.
-  base_url: "https://headscale.vqivs.sbs"
+  base_url: "https://headscale.neverupdate.xyz"
 
   # The secret used to encode and decode web sessions (must be 32 characters)
   # You may also provide `cookie_secret_path` instead to read a value from disk.
@@ -53,7 +53,7 @@ headscale:
   # (THIS IS NOT the gRPC endpoint, but the HTTP endpoint)
   #
   # IMPORTANT: If you are using TLS this MUST be set to `https://`
-  url: "https://headscale.vqivs.sbs"
+  url: "https://headscale.neverupdate.xyz"
 
   # If you use the TLS configuration in Headscale, and you are not using
   # Let's Encrypt for your certificate, pass in the path to the certificate.
@@ -62,7 +62,7 @@ headscale:
 
   # Optional, public URL if its different from the `headscale.url`
   # This affects certain parts of the web UI which shows Headscale's URL
-  public_url: "https://headscale.vqivs.sbs"
+  public_url: "https://headscale.neverupdate.xyz"
 
   # Path to the Headscale configuration file
   # This is optional, but HIGHLY recommended for the best experience
