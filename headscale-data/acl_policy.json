@@ -1,0 +1,32 @@
+{
+  "groups": {
+    "group:qivs": [
+      "qias"
+    ]
+  },
+  "acls": [
+    {
+      "action": "accept",
+      "src": [
+        "*"
+      ],
+      "dst": [
+        "*:*"
+      ]
+    }
+  ],
+  "ssh": [
+    {
+      "action": "accept",
+      "src": [
+        "group:qivs"
+      ],
+      "dst": [
+        "*"
+      ],
+      "users": [
+        "root"
+      ]
+    }
+  ]
+}

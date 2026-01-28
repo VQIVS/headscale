@@ -1,0 +1,44 @@
+services:
+  headscale:
+    image: 'headscale/headscale:v0.27.1'
+    container_name: 'headscale'
+    restart: 'always'
+    command: 'serve'
+    volumes:
+      - './headscale-data/data:/var/lib/headscale'
+      - './headscale-data/config.yaml:/etc/headscale/config.yaml'
+      - './headscale-data/acl_policy.json:/etc/headscale/acl_policy.json'
+      - './headscale-data/run:/var/run/headscale'
+    ports:
+      - '8080:8080'
+      - '9090:9090'
+      - '50443:50443'
+      - '3478:3478/udp'
+    environment:
+      TZ: 'UTC'
+      HEADSCALE_LOG_LEVEL: "info"
+  headplane:
+    container_name: headplane
+    image: ghcr.io/tale/headplane:latest
+    restart: unless-stopped
+    depends_on:
+      - headscale
+    volumes:
+      - './headplane-data/data:/var/lib/headplane'
+      - './headplane-data/config.yaml:/etc/headplane/config.yaml'
+      - './headscale-data/config.yaml:/etc/headscale/config.yaml'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    ports:
+      - '3000:3000'
+    environment:
+      DEBUG: false
+      COOKIE_SECRET: '3S0mZuN3sUqdm08fv34RqOAcpWu6XU3K'
+      HEADSCALE_INTEGRATION: 'docker'
+      HEADSCALE_CONTAINER: 'headscale'
+      DISABLE_API_KEY_LOGIN: 'false'
+      HOST: '0.0.0.0'
+      PORT: '3000'
+      TZ: 'UTC'
+
+volumes:
+  nginx_secrets:
